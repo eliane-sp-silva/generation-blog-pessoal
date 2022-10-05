@@ -6,11 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity //transforma classe em tabela
 @Table(name = "tb_postagens") //renomeia o nome da tabela
@@ -30,6 +33,20 @@ public class Postagem {
 	
 	@UpdateTimestamp //carregará data do sistema operacional
 	private LocalDateTime data;
+	
+	@ManyToOne	//configurando relação de muitas postagens para um tema. relação indo e voltando
+	@JsonIgnoreProperties("postagem") 
+	//a Relação entre as Classes será do tipo Bidirecional, para que a busca apresente postagem somente uma vez.
+	private Tema tema;
+	
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
 
 	public Long getId() {
 		return id;

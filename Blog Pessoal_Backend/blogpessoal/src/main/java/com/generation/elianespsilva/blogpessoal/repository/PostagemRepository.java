@@ -11,6 +11,7 @@ import com.generation.elianespsilva.blogpessoal.model.Postagem;
 @Repository
 public interface PostagemRepository extends JpaRepository<Postagem, Long> {
 
+	//method query
 	public List<Postagem> findAllByTituloContainingIgnoreCase(@Param("titulo")String titulo);
 	//esse não é um método padrão então deve ser feito no repository.
 }
