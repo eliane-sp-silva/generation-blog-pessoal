@@ -27,8 +27,9 @@ public class Tema {
 	private String descricao;
 	
 	@OneToMany(mappedBy = "tema", cascade = CascadeType.REMOVE)//cascade -> criar relação e quando tema relacionado por deletado, as postagens relacionadas tbm serão apagadas.
-	@JsonIgnoreProperties("tema")
+	@JsonIgnoreProperties("tema") //tema >> chave estrangeira
 	private List<Postagem> postagem; //porque são muitas postagens para um tema
+	
 	
 	
 

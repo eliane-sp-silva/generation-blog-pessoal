@@ -27,8 +27,8 @@ public class Postagem {
 	@Size(min = 5, max = 100, message = "O atributo título deve conter no mínimo 05 e no máximo 100 caracteres")
 	private String titulo;
 	
-	@NotBlank(message = "O atributo título é obrigatório!") //mesma função do Not Null do Banco de Dados
-	@Size(min = 10, max = 1000, message = "O atributo título deve conter no mínimo 10 e no máximo 1000 caracteres")
+	@NotBlank(message = "O atributo Texto é obrigatório!") //mesma função do Not Null do Banco de Dados
+	@Size(min = 10, max = 1000, message = "O atributo Texto deve conter no mínimo 10 e no máximo 1000 caracteres")
 	private String texto;
 	
 	@UpdateTimestamp //carregará data do sistema operacional
@@ -39,9 +39,23 @@ public class Postagem {
 	//a Relação entre as Classes será do tipo Bidirecional, para que a busca apresente postagem somente uma vez.
 	private Tema tema;
 	
-
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
+	
+	//getters e setters
+	
+	
 	public Tema getTema() {
 		return tema;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public void setTema(Tema tema) {
